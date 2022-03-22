@@ -49,7 +49,15 @@ toggle x S에 x가 있으면 x를 제거하고, 없으면 x를 추가한다. (1 
       <pubDate>Tue, 22 Mar 2022 19:35:14 +0900</pubDate>
       
       <guid>https://meinego.github.io/acm/7662/</guid>
-      <description>문제 풀이 코드 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; #define N int main() { return 0; }  링크 https://www.acmicpc.net/problem/7662</description>
+      <description>문제 m &amp;lt;= 1e6 다음 연산들을 총 m번 수행 후 큐의 최댓값, 최솟값을 구하라.
+I x x를 추가
+D 1 최댓값을 삭제
+D -1 최솟값을 삭제
+단, 같은 값을 여러번 추가할 수 있으며, 빈 큐에 삭제 연산이 불릴 수도 있다.
+m번의 연산 후 큐가 비어있으면 EMPTY를 출력한다.
+풀이 추가 시엔 최소힙과 최대힙에 넣고 삭제시엔 하나의 힙에서 삭제한다.
+큐에 들어가 있는 개수를 저장하여 큐가 비었는지 확인하며
+삽입된 수마다 큐에 있는 개수를 저장하여 삭제시에 유효한 값인지 확인한다.</description>
     </item>
     
   </channel>
