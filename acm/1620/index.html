@@ -29,7 +29,7 @@
   
   
     
-    <link type="text/css" rel="stylesheet" href="/css/post.min.86d1effd4c412b85ac13db53a90c473a0f256f789b821e131125c9aa25cb6a6d.css" integrity="sha256-htHv/UxBK4WsE9tTqQxHOg8lb3ibgh4TESXJqiXLam0="/>
+    <link type="text/css" rel="stylesheet" href="/css/post.min.6796f07dba609268a236c6b206dd543c68a427710896c8af74bb7d213b83d805.css" integrity="sha256-Z5bwfbpgkmiiNsayBt1UPGikJ3EIlsivdLt9ITuD2AU="/>
   
     
     <link type="text/css" rel="stylesheet" href="/css/custom.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" integrity="sha256-47DEQpj8HBSa&#43;/TImW&#43;5JCeuQeRkm5NMpJWZG3hSuFU="/>
@@ -102,9 +102,36 @@
               
 <p><img src="/banner/acm_banner.jpg" alt="banner"></p>
 <h2 id="문제">문제<a class="anchor" href="#문제">#</a></h2>
+<p>포켓몬 도감이 주어질 때 index -&gt; 포켓몬이름, 포켓몬이름-&gt;index 를 구하는 문제</p>
 <h2 id="풀이">풀이<a class="anchor" href="#풀이">#</a></h2>
+<p>map을 2개 생성하고 조회하면 된다.</p>
 <h2 id="코드">코드<a class="anchor" href="#코드">#</a></h2>
-<pre><code class="language-c++"></code></pre>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define N 100'000
+string arr[N+1];
+int n, m;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cin&gt;&gt;n&gt;&gt;m;
+    map&lt;string, string&gt; name2id;
+    map&lt;string, string&gt; id2name;
+    for (int i=1; i&lt;=n; ++i) {
+        string s; cin&gt;&gt;s;
+        name2id[s] = to_string(i);
+        id2name[to_string(i)] = s;
+    }
+    for (int i=0; i&lt;m; ++i) {
+        string s; cin&gt;&gt;s;
+        if (name2id.find(s) != name2id.end()) cout &lt;&lt; name2id[s] &lt;&lt; &quot;\n&quot;;
+        else cout &lt;&lt; id2name[s] &lt;&lt; &quot;\n&quot;;
+    }
+
+    return 0;
+}
+</code></pre>
 <h2 id="링크">링크<a class="anchor" href="#링크">#</a></h2>
 <p><a href="https://www.acmicpc.net/problem/1620" 
   

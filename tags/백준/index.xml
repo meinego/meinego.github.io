@@ -14,7 +14,9 @@
       <pubDate>Tue, 22 Mar 2022 20:52:57 +0900</pubDate>
       
       <guid>https://meinego.github.io/acm/1620/</guid>
-      <description>문제 풀이 코드  링크 https://www.acmicpc.net/problem/1620</description>
+      <description>문제 포켓몬 도감이 주어질 때 index -&amp;gt; 포켓몬이름, 포켓몬이름-&amp;gt;index 를 구하는 문제
+풀이 map을 2개 생성하고 조회하면 된다.
+코드 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; #define N 100&#39;000 string arr[N+1]; int n, m; int main() { ios::sync_with_stdio(false); cin.tie(0); cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;m; map&amp;lt;string, string&amp;gt; name2id; map&amp;lt;string, string&amp;gt; id2name; for (int i=1; i&amp;lt;=n; ++i) { string s; cin&amp;gt;&amp;gt;s; name2id[s] = to_string(i); id2name[to_string(i)] = s; } for (int i=0; i&amp;lt;m; ++i) { string s; cin&amp;gt;&amp;gt;s; if (name2id.</description>
     </item>
     
     <item>
