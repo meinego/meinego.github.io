@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
     <copyright>© {year}</copyright>
-    <lastBuildDate>Tue, 22 Mar 2022 22:49:21 +0900</lastBuildDate><atom:link href="https://meinego.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Mar 2022 21:09:25 +0900</lastBuildDate><atom:link href="https://meinego.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1657. Edu 125</title>
+      <link>https://meinego.github.io/cf/1657/</link>
+      <pubDate>Wed, 23 Mar 2022 21:09:25 +0900</pubDate>
+      
+      <guid>https://meinego.github.io/cf/1657/</guid>
+      <description>A. Integer Moves 0 &amp;lt;= x,y &amp;lt;= 50 인 정수 x,y가 주어질 때, (0,0)에서 (x,y)로 이동하려고 한다.
+정수좌표 (a,b)들을 거쳐가며, 이동거리들은 모두 정수가 되어야 할 때 최소 이동횟수를 구하는 문제다.
+풀이 모든 (x,y) 에 대해 (0,0) -&amp;gt; (0, x) -&amp;gt; (x,y) 와 같은 이동이 가능하므로 답의 상한은 2이다. (3,4) 와 같이 (0,0)으로부터 거리가 정수인 점들은 1이다. (0,0) 은 0이다.
+코드 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; #define N 100&#39;000 int n; int main() { ios::sync_with_stdio(false); cin.</description>
+    </item>
+    
     <item>
       <title>404</title>
       <link>https://meinego.github.io/blog/404/</link>

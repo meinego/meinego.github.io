@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <title>1657. Edu 125 | meinego</title>
+
+  <meta charset="UTF-8">
+  <meta name="language" content="en">
+  <meta name="description" content="코드포스">
+  <meta name="keywords" content="코드포스 , 1657">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  
+  
+
+  <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
+
+
+  
+  
+    
+ 
+  
+  
+  
+  
+  
+  
+    
+    <link type="text/css" rel="stylesheet" href="/css/post.min.6796f07dba609268a236c6b206dd543c68a427710896c8af74bb7d213b83d805.css" integrity="sha256-Z5bwfbpgkmiiNsayBt1UPGikJ3EIlsivdLt9ITuD2AU="/>
+  
+    
+    <link type="text/css" rel="stylesheet" href="/css/custom.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" integrity="sha256-47DEQpj8HBSa&#43;/TImW&#43;5JCeuQeRkm5NMpJWZG3hSuFU="/>
+  
+  
+   
+   
+    
+
+<script type="application/ld+json">
+  
+    { 
+      "@context": "http://schema.org", 
+      "@type": "WebSite", 
+      "url": "https:\/\/meinego.github.io\/cf\/1657\/",
+      "name": "1657. Edu 125",
+      "author": {
+        "@type": "Person",
+        "name": ""
+      },
+      "description": "코드포스"
+    }
+  
+  </script>
+</head>
+
+<body>
+  <div class="burger__container">
+  <div class="burger" aria-controls="navigation" aria-label="Menu">
+    <div class="burger__meat burger__meat--1"></div>
+    <div class="burger__meat burger__meat--2"></div>
+    <div class="burger__meat burger__meat--3"></div>
+  </div>
+</div>
+ 
+
+  <nav class="nav" id="navigation">
+  <ul class="nav__list">
+    
+    
+      <li>
+        <a  href="/">about</a>
+      </li>
+    
+      <li>
+        <a  href="/blog">blog</a>
+      </li>
+    
+      <li>
+        <a  href="/acm">백준</a>
+      </li>
+    
+      <li>
+        <a  class="active"
+         href="/cf">코드포스</a>
+      </li>
+    
+  </ul>
+</nav>
+
+
+  <main>
+    
+    
+
+    <div class="flex-wrapper">
+      <div class="post__container">
+        <div class="post">
+          <header class="post__header">
+            <h1 id="post__title">1657. Edu 125</h1>
+            <time datetime="2022-03-23 21:09:25 &#43;0900 KST" class="post__date">Mar 23 2022</time> 
+          </header>
+          <article class="post__content">
+              
+<p><img src="https://i.imgur.com/pxVfepk.png" alt="Screenshot"></p>
+<h2 id="a-integer-moves">A. Integer Moves<a class="anchor" href="#a-integer-moves">#</a></h2>
+<p>0 &lt;= x,y &lt;= 50 인 정수 x,y가 주어질 때, (0,0)에서 (x,y)로 이동하려고 한다.<br>
+정수좌표 (a,b)들을 거쳐가며, 이동거리들은 모두 정수가 되어야 할 때
+최소 이동횟수를 구하는 문제다.</p>
+<h3 id="풀이">풀이<a class="anchor" href="#풀이">#</a></h3>
+<p>모든 (x,y) 에 대해 (0,0) -&gt; (0, x) -&gt; (x,y) 와 같은 이동이 가능하므로 답의 상한은 2이다.
+(3,4) 와 같이 (0,0)으로부터 거리가 정수인 점들은 1이다.
+(0,0) 은 0이다.</p>
+<h3 id="코드">코드<a class="anchor" href="#코드">#</a></h3>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define N 100'000
+
+int n;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cin&gt;&gt;n;
+    while(n--) {
+        int x,y; cin&gt;&gt;x&gt;&gt;y;
+        if (x==0 and y==0) {
+            cout &lt;&lt; 0 &lt;&lt; &quot;\n&quot;;
+            continue;
+        }
+        double z = hypot(x,y);
+        if (z==int(z)) {
+            cout &lt;&lt; 1 &lt;&lt; &quot;\n&quot;;
+            continue;
+        }
+        cout &lt;&lt; 2&lt;&lt;&quot;\n&quot;;
+    }
+
+    return 0;
+}
+</code></pre>
+<h2 id="b-xy-sequence">B. XY Sequence<a class="anchor" href="#b-xy-sequence">#</a></h2>
+<p>\(n, B, x, y \)
+가 주어질 때, 아래 조건을 만족하는 배열의 원소합의 최댓값을 구하는 문제</p>
+<p>\(\text{1. } A_0 = 0\)<br>
+\(\text{2. } 0 &lt; i \leq n, \text{   } \text{   } \text{  }<br>
+A_i = A_{i-1} + x \textit{ or } A_i = A_{i-1} -y \)<br>
+\( \text{3. For all } i, \text{ }\text{ }\text{ } A_i \leq B \)</p>
+<h3 id="풀이-1">풀이<a class="anchor" href="#풀이-1">#</a></h3>
+<p>\( \text{For } 0 &lt; i \leq n \text{, } \)<br>
+\(
+A_i = \begin{cases}
+A_{i-1}+x &amp;&amp;\text{if } A_{i-1}+x \leq B
+\newline
+A_{i-1}-y &amp;&amp;\text{otherwise}
+\end{cases}
+\)</p>
+<p>이전값 + x가 B 이하라면 사용하고 그렇지 않으면 이전값 - y 를 해서 만든 배열이<br>
+원소합이 최대가 된다.</p>
+<h3 id="코드-1">코드<a class="anchor" href="#코드-1">#</a></h3>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define N 100'000
+
+int n,b,x,y;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    int T; cin&gt;&gt;T;
+    while (T--) {
+        cin&gt;&gt;n&gt;&gt;b&gt;&gt;x&gt;&gt;y;
+        vector&lt;int&gt; v(n+1);
+        v[0]=0;
+        long long sum = 0;
+        for (int i=1; i&lt;n+1; ++i) {
+            if (v[i-1]+x &lt;= b)
+                v[i] = v[i-1]+x;
+            else 
+                v[i] = v[i-1]-y;
+            sum += v[i];
+        }
+        cout &lt;&lt; sum &lt;&lt; &quot;\n&quot;;
+    }
+
+    return 0;
+}
+</code></pre>
+<h2 id="c-bracket-sequence-deletion">C. Bracket Sequence Deletion<a class="anchor" href="#c-bracket-sequence-deletion">#</a></h2>
+<p>( 또는 ) 로 이루어진 문자열에 대해 다음 두 가지 연산을 수행한다.</p>
+<p>\( \text{1. 접두사 () 를 지운다. }\)<br>
+\(\text{2. 접두사 중 가장 짧은 팰린드롬을 지운다. }\)</p>
+<p>수행한 연산 총 횟수와 남은 문자 수를 구하는 문제다.</p>
+<h3 id="풀이-2">풀이<a class="anchor" href="#풀이-2">#</a></h3>
+<p>\(\text{ 1. ( 가 오면 항상 ()는 올바른 쌍이며 (( 는 팰린드롬이므로 다음 문자와 함께 지운다.}\)
+\(\text{ 2. ) 가 오면 다음에 오는 )까지의 문자열이 팰린드롬이므로 )가 나오기까지 문자열을 삭제한다.}\)
+\(\text{ 3. 문자열이 하나만 남은 경우 더 이상 지울 수 없다. }\)
+\(\text{ 4. 문자열을 다보면 끝이다. }\)</p>
+<h3 id="코드-2">코드<a class="anchor" href="#코드-2">#</a></h3>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define N 100'000
+int acc, rem;
+string s;
+int n;
+
+void f(int idx) {
+    if (idx==n) return;
+    if (idx==n-1) {
+        rem=1; return;
+    }
+    if (s[idx]=='(') {
+        acc++; return f(idx+2);
+    }
+    for (int i=idx+1; i&lt;n; ++i) {
+        if (s[i]==')') {
+            acc++;
+            return f(i+1);
+        }
+    }
+    rem=n-idx;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    int T; cin&gt;&gt;T;
+    while (T--) {
+        cin&gt;&gt;n;
+        acc=0, rem=0;
+        cin&gt;&gt;s;
+        f(0);
+        cout &lt;&lt; acc &lt;&lt; &quot; &quot; &lt;&lt; rem &lt;&lt; &quot;\n&quot;;
+    }
+
+    return 0;
+}
+</code></pre>
+<h2 id="d-for-gamers-by-gamers">D. For Gamers. By Gamers.<a class="anchor" href="#d-for-gamers-by-gamers">#</a></h2>
+<p>\(
+TODO
+\)</p>
+<h3 id="풀이-3">풀이<a class="anchor" href="#풀이-3">#</a></h3>
+<h3 id="코드-3">코드<a class="anchor" href="#코드-3">#</a></h3>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define N 1'000'000
+typedef long long ll;
+vector&lt;ll&gt; dp;
+int n,m,k;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0); cout.tie(0);
+    cin&gt;&gt;n&gt;&gt;k;
+    dp.resize(k+1);
+    for (int i=0; i&lt;n; ++i) {
+        ll c,d,h;cin&gt;&gt;c&gt;&gt;d&gt;&gt;h;
+        dp[c] = max(dp[c], d*h);
+    }
+    for (int c=1; c&lt;=k; ++c) {
+        if (dp[c])
+            for (int i=1; i*c&lt;=k; ++i)
+                dp[i*c] = max(dp[i*c], dp[c]*i);
+    }
+    for (int i=1; i&lt;dp.size(); ++i) {
+        dp[i] = max(dp[i-1], dp[i]);
+    }
+
+    cin&gt;&gt;m;
+    for (int i=0; i&lt;m; ++i) {
+        ll d,h; cin&gt;&gt;d&gt;&gt;h;
+        auto it = upper_bound(dp.begin(), dp.end(), d*h);
+        if (it == dp.end()) cout &lt;&lt; &quot;-1 &quot;;
+        else cout &lt;&lt; it - dp.begin() &lt;&lt; &quot; &quot;;
+    }
+
+    return 0;
+}
+</code></pre>
+<h2 id="e-star-mst">E. Star MST<a class="anchor" href="#e-star-mst">#</a></h2>
+<p>\(\text{TODO}\)</p>
+<h2 id="링크">링크<a class="anchor" href="#링크">#</a></h2>
+<p><a href="https://codeforces.com/contest/1657" 
+  
+   target="_blank" rel="noreferrer noopener" 
+>https://codeforces.com/contest/1657</a></p>
+
+
+              
+                  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
+              
+          </article>
+          
+
+<ul class="tags__list">
+    
+    <li class="tag__item">
+        <a class="tag__link" href="https://meinego.github.io/tags/%EC%BD%94%EB%93%9C%ED%8F%AC%EC%8A%A4/">코드포스</a>
+    </li></ul>
+
+ <div class="pagination">
+  
+
+  
+</div>
+
+          
+          <footer class="post__footer">
+            
+
+
+<div class="social-icons">
+  
+     
+    
+      <a
+        class="social-icons__link"
+        title="GitHub"
+        href="https://github.com/meinego"
+        target="_blank"
+        rel="me noopener"
+      >
+        <div class="social-icons__icon" style="background-image: url('https://meinego.github.io/svg/github.svg')"></div>
+      </a>
+    
+     
+</div>
+
+            <p>© 2022</p>
+          </footer>
+          </div>
+      </div>
+      
+      <div class="toc-container">
+          
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#a-integer-moves">A. Integer Moves</a>
+      <ul>
+        <li><a href="#풀이">풀이</a></li>
+        <li><a href="#코드">코드</a></li>
+      </ul>
+    </li>
+    <li><a href="#b-xy-sequence">B. XY Sequence</a>
+      <ul>
+        <li><a href="#풀이-1">풀이</a></li>
+        <li><a href="#코드-1">코드</a></li>
+      </ul>
+    </li>
+    <li><a href="#c-bracket-sequence-deletion">C. Bracket Sequence Deletion</a>
+      <ul>
+        <li><a href="#풀이-2">풀이</a></li>
+        <li><a href="#코드-2">코드</a></li>
+      </ul>
+    </li>
+    <li><a href="#d-for-gamers-by-gamers">D. For Gamers. By Gamers.</a>
+      <ul>
+        <li><a href="#풀이-3">풀이</a></li>
+        <li><a href="#코드-3">코드</a></li>
+      </ul>
+    </li>
+    <li><a href="#e-star-mst">E. Star MST</a></li>
+    <li><a href="#링크">링크</a></li>
+  </ul>
+</nav>
+      </div>
+      
+    </div>
+    
+
+  </main>
+
+   
+
+  
+  <script src="/js/index.min.301a8b0870381bf76b3b5182e8966d363a0474281183439beb024d8b8228fc66.js" integrity="sha256-MBqLCHA4G/drO1GC6JZtNjoEdCgRg0Ob6wJNi4Io/GY=" crossorigin="anonymous"></script>
+  
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/components/prism-core.min.js"></script>
+
+  
+  <script src="https://unpkg.com/prismjs@1.20.0/plugins/autoloader/prism-autoloader.min.js"
+    data-autoloader-path="https://unpkg.com/prismjs@1.20.0/components/"></script>
+
+  
+    <script src="/js/table-of-contents.js"></script>
+  
+
+
+</body>
+
+</html>
