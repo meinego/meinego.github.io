@@ -9,11 +9,11 @@
     <copyright>© {year}</copyright>
     <lastBuildDate>Thu, 24 Mar 2022 18:55:25 +0900</lastBuildDate><atom:link href="https://meinego.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>1657. LCA 2</title>
-      <link>https://meinego.github.io/acm/1657/</link>
+      <title>11438. LCA 2</title>
+      <link>https://meinego.github.io/acm/11438/</link>
       <pubDate>Thu, 24 Mar 2022 18:55:25 +0900</pubDate>
       
-      <guid>https://meinego.github.io/acm/1657/</guid>
+      <guid>https://meinego.github.io/acm/11438/</guid>
       <description>문제 루트가 1인 트리가 주어질 때 최소공통조상을 \(O(log N)\)에 찾는 문제
 풀이 노드마다 \(2^{i}\) 번째 부모를 미리 구해놓으면 된다.
 \(\text{1. DFS를 통해 노드들의 depth를 구한다.}\)
