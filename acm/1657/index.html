@@ -2,12 +2,12 @@
 <html lang="ko">
 
 <head>
-  <title>1620. 나는야 포켓몬 마스터 이다솜 | meinego</title>
+  <title>1657. LCA 2 | meinego</title>
 
   <meta charset="UTF-8">
   <meta name="language" content="en">
   <meta name="description" content="백준">
-  <meta name="keywords" content="백준 , 1620">
+  <meta name="keywords" content="백준 , 1657">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,8 +44,8 @@
     { 
       "@context": "http://schema.org", 
       "@type": "WebSite", 
-      "url": "https:\/\/meinego.github.io\/acm\/1620\/",
-      "name": "1620. 나는야 포켓몬 마스터 이다솜",
+      "url": "https:\/\/meinego.github.io\/acm\/1657\/",
+      "name": "1657. LCA 2",
       "author": {
         "@type": "Person",
         "name": ""
@@ -99,50 +99,101 @@
       <div class="post__container">
         <div class="post">
           <header class="post__header">
-            <h1 id="post__title">1620. 나는야 포켓몬 마스터 이다솜</h1>
-            <time datetime="2022-03-22 20:52:57 &#43;0900 KST" class="post__date">Mar 22 2022</time> 
+            <h1 id="post__title">1657. LCA 2</h1>
+            <time datetime="2022-03-24 18:55:25 &#43;0900 KST" class="post__date">Mar 24 2022</time> 
           </header>
           <article class="post__content">
               
 <p><img src="/banner/acm_banner.jpg" alt="banner"></p>
 <h2 id="문제">문제<a class="anchor" href="#문제">#</a></h2>
-<p>포켓몬 도감이 주어질 때 index -&gt; 포켓몬이름, 포켓몬이름-&gt;index 를 구하는 문제</p>
+<p>루트가 1인 트리가 주어질 때 최소공통조상을 \(O(log N)\)에 찾는 문제</p>
 <h2 id="풀이">풀이<a class="anchor" href="#풀이">#</a></h2>
-<p>map을 2개 생성하고 조회하면 된다.</p>
+<p>노드마다 \(2^{i}\) 번째 부모를 미리 구해놓으면 된다.</p>
+<p>\(\text{1. DFS를 통해 노드들의 depth를 구한다.}\)<br>
+\(\text{2. parent[node_idx][max_log_n] 을 구한다.}\)<br>
+\(\text{3. 찾으려고하는 노드 A, B의 depth를 같게 만든다.}\)<br>
+\(\text{4. 부모가 같아질 때까지 A, B를 거슬러 올라간다. }\)</p>
 <h2 id="코드">코드<a class="anchor" href="#코드">#</a></h2>
 <pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
 using namespace std;
 #define N 100'000
-string arr[N+1];
-int n, m;
+#define logN 16
+vector&lt;int&gt; adj[N+1];
+int d[N+1], p[N+1][logN+1];
+int n,m;
+
+void dfs(int u) {
+    for (int v: adj[u]) {
+        if (d[v] != -1) continue;
+        d[v] = d[u]+1;
+        p[v][0] = u;
+        dfs(v);
+    }
+}
+
+void init_p() {
+    for (int j=1; j&lt;=logN; ++j)
+        for (int i=1; i&lt;=n; ++i)
+            p[i][j] = p[p[i][j-1]][j-1];
+}
+
+int lca(int a, int b) {
+    if (d[a] &lt; d[b]) swap(a,b);
+    for (int i=logN; i&gt;=0; --i)
+        if (d[a]-d[b] &gt;= (1&lt;&lt;i))
+            a=p[a][i];
+    
+    if (a==b) return a;
+
+    for (int i=logN; i&gt;=0; --i)
+        if (p[a][i] != p[b][i]) {
+            a = p[a][i];
+            b = p[b][i];
+        }
+    return p[a][0];
+}
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    cin&gt;&gt;n&gt;&gt;m;
-    map&lt;string, string&gt; name2id;
-    map&lt;string, string&gt; id2name;
-    for (int i=1; i&lt;=n; ++i) {
-        string s; cin&gt;&gt;s;
-        name2id[s] = to_string(i);
-        id2name[to_string(i)] = s;
+    memset(d, -1, sizeof d);
+    cin&gt;&gt;n;
+    for (int i=0; i&lt;n-1; ++i) {
+        int a,b; cin&gt;&gt;a&gt;&gt;b;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
     }
+    d[1]=0;
+    dfs(1);
+    init_p();
+    cin&gt;&gt;m;
     for (int i=0; i&lt;m; ++i) {
-        string s; cin&gt;&gt;s;
-        if (name2id.find(s) != name2id.end()) cout &lt;&lt; name2id[s] &lt;&lt; &quot;\n&quot;;
-        else cout &lt;&lt; id2name[s] &lt;&lt; &quot;\n&quot;;
+        int a,b; cin&gt;&gt;a&gt;&gt;b;
+        cout &lt;&lt; lca(a,b) &lt;&lt; &quot;\n&quot;;
     }
 
     return 0;
 }
 </code></pre>
 <h2 id="링크">링크<a class="anchor" href="#링크">#</a></h2>
-<p><a href="https://www.acmicpc.net/problem/1620" 
+<p><a href="https://www.acmicpc.net/problem/1657" 
   
    target="_blank" rel="noreferrer noopener" 
->https://www.acmicpc.net/problem/1620</a></p>
+>https://www.acmicpc.net/problem/1657</a></p>
 
 
+              
+                  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+            showMathMenu: false, //disables context menu
+            tex2jax: {
+            inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+           }
+    });
+</script>
               
           </article>
           
@@ -155,17 +206,12 @@ int main() {
 
  <div class="pagination">
   
-    <a class="pagination__item" href="https://meinego.github.io/acm/11723/">
+    <a class="pagination__item" href="https://meinego.github.io/acm/1620/">
         <span class="pagination__label">Previous Post</span>
-        <span class="pagination__title">11723. 집합</span>
+        <span class="pagination__title">1620. 나는야 포켓몬 마스터 이다솜</span>
     </a>
   
 
-  
-    <a class="pagination__item" href="https://meinego.github.io/acm/1657/">
-      <span class="pagination__label">Next Post</span>
-      <span class="pagination__title" >1657. LCA 2</span>
-    </a>
   
 </div>
 

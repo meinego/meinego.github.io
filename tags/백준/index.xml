@@ -7,7 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
     <copyright>© {year}</copyright>
-    <lastBuildDate>Tue, 22 Mar 2022 20:52:57 +0900</lastBuildDate><atom:link href="https://meinego.github.io/tags/%EB%B0%B1%EC%A4%80/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Mar 2022 18:55:25 +0900</lastBuildDate><atom:link href="https://meinego.github.io/tags/%EB%B0%B1%EC%A4%80/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1657. LCA 2</title>
+      <link>https://meinego.github.io/acm/1657/</link>
+      <pubDate>Thu, 24 Mar 2022 18:55:25 +0900</pubDate>
+      
+      <guid>https://meinego.github.io/acm/1657/</guid>
+      <description>문제 루트가 1인 트리가 주어질 때 최소공통조상을 \(O(log N)\)에 찾는 문제
+풀이 노드마다 \(2^{i}\) 번째 부모를 미리 구해놓으면 된다.
+\(\text{1. DFS를 통해 노드들의 depth를 구한다.}\)
+\(\text{2. parent[node_idx][max_log_n] 을 구한다.}\)
+\(\text{3. 찾으려고하는 노드 A, B의 depth를 같게 만든다.}\)
+\(\text{4. 부모가 같아질 때까지 A, B를 거슬러 올라간다. }\)
+코드 #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; #define N 100&#39;000 #define logN 16 vector&amp;lt;int&amp;gt; adj[N+1]; int d[N+1], p[N+1][logN+1]; int n,m; void dfs(int u) { for (int v: adj[u]) { if (d[v] !</description>
+    </item>
+    
     <item>
       <title>1620. 나는야 포켓몬 마스터 이다솜</title>
       <link>https://meinego.github.io/acm/1620/</link>
