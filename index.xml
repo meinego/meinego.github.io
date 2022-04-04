@@ -7,7 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
     <copyright>© {year}</copyright>
-    <lastBuildDate>Thu, 24 Mar 2022 18:55:25 +0900</lastBuildDate><atom:link href="https://meinego.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Apr 2022 21:29:06 +0900</lastBuildDate><atom:link href="https://meinego.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Maven 플젝 만들어보기</title>
+      <link>https://meinego.github.io/spring/maven/</link>
+      <pubDate>Mon, 04 Apr 2022 21:29:06 +0900</pubDate>
+      
+      <guid>https://meinego.github.io/spring/maven/</guid>
+      <description>Java의 npm 같은 프로젝트 관리툴이라 함. Ant의 대용으로 만들어졌다고 하며, 현재는 gradle이 더 선호되는 듯 함 책의 예제가 maven이라 maven부터 시작하기로 함 (또한 여러기업에서도 여전히 maven을 쓰고 있을 것 같음)  프로젝트 생성 npm init 과 같다
+참고: Maven – Maven in 5 Minutes
+대화형으로 프로젝트 정보를 입력하려면
+mvn archetype:generate  값을 다 주려면
+mvn archetype:generate -DgroupId=org.meinego.app -DartifactId=spring-study -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false  프로젝트를 생성하면 다음과 같은 구조를 가지게 된다.</description>
+    </item>
+    
     <item>
       <title>11438. LCA 2</title>
       <link>https://meinego.github.io/acm/11438/</link>
