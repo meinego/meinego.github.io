@@ -2,12 +2,12 @@
 <html lang="ko">
 
 <head>
-  <title>2295. 세 수의 합 | meinego</title>
+  <title>17435. 합성함수와 쿼리 | meinego</title>
 
   <meta charset="UTF-8">
   <meta name="language" content="en">
   <meta name="description" content="백준">
-  <meta name="keywords" content="백준 , 2295">
+  <meta name="keywords" content="백준 , 17435">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,8 +44,8 @@
     { 
       "@context": "http://schema.org", 
       "@type": "WebSite", 
-      "url": "https:\/\/meinego.github.io\/acm\/2295\/",
-      "name": "2295. 세 수의 합",
+      "url": "https:\/\/meinego.github.io\/acm\/17435\/",
+      "name": "17435. 합성함수와 쿼리",
       "author": {
         "@type": "Person",
         "name": ""
@@ -103,47 +103,50 @@
       <div class="post__container">
         <div class="post">
           <header class="post__header">
-            <h1 id="post__title">2295. 세 수의 합</h1>
-            <time datetime="2022-04-05 14:40:35 &#43;0900 KST" class="post__date">Apr 5 2022</time> 
+            <h1 id="post__title">17435. 합성함수와 쿼리</h1>
+            <time datetime="2022-04-05 16:18:24 &#43;0900 KST" class="post__date">Apr 5 2022</time> 
           </header>
           <article class="post__content">
               
 <p><img src="/banner/acm_banner.jpg" alt="banner"></p>
 <h2 id="문제">문제<a class="anchor" href="#문제">#</a></h2>
-<p>집합 속 원소 셋의 합이 집합에 속할 때 가장 큰 합을 구하여라</p>
+<p>\(f_1(x)\text{ 가 주어질 때, } f_n(x) 를 구하는 문제 \)</p>
 <h2 id="풀이">풀이<a class="anchor" href="#풀이">#</a></h2>
-<p>\( \text{단순 반복으로 풀면} \space  O(N^3 log N) 이다. \)<br>
-\( \text{A+B+C=S 일 때, A+B = S-C 이고 A,B,C,S 모두 집합의 원소이므로 } \)<br>
-\( \text{A+B 의 합을 우선 저장한 후,  }O(N^2) \text{ 에 S-C를 돌면서 구한 합들 중에 } \)<br>
-\( \text{있는지 확인하면 된다. } O(logN)\)</p>
+<p>\(\text{LCA와 비슷하게 }f_1(x),\space f_2(x),\space f_4(x),\space &hellip;\text{ 을 저장하면}\)<br>
+\(O(logN) \text{ 만에 구할 수 있다.} \)</p>
 <h2 id="코드">코드<a class="anchor" href="#코드">#</a></h2>
-<pre><code class="language-kotlin">// kotlin 
+<pre><code class="language-kotlin">//kotlin
 
 fun main(args: Array&lt;String&gt;) {
     val n = readInt()
-    val arr = IntArray(n) {readInt()}
-    arr.sort()
+    val arr = readIntArray()
 
-    var m = TreeMap&lt;Int, Boolean&gt;()
-    for (i in 0..n-1)
-        for (j in i..n-1) {
-            val x = arr[i]+arr[j]
-            m[x] = true
-        }
+    val f = Array(n+1) { IntArray(20)}
+    for (i in 1..n) 
+        f[i][0] = arr[i-1]
+    
+    for (j in 1..19) 
+        for (i in 1..n) 
+            f[i][j] = f[f[i][j-1]][j-1]
+    
+    repeat(readInt()) {
+        var (n,x) = readIntArray()
+        for (k in 19 downTo 0)
+            if (n &gt;= 1.shl(k)) {
+                n -= 1.shl(k)
+                x = f[x][k]
+            }
+        outputWriter.println(x)
+    }
 
-    var ans = 0
-    for (i in 0..n-1)
-        for (j in i..n-1)
-            if (m.contains(arr[j]-arr[i]))
-                ans = maxOf(ans, arr[j])
-    println(ans)
+    outputWriter.flush()
 }
 </code></pre>
 <h2 id="링크">링크<a class="anchor" href="#링크">#</a></h2>
-<p><a href="https://www.acmicpc.net/problem/2295" 
+<p><a href="https://www.acmicpc.net/problem/17435" 
   
    target="_blank" rel="noreferrer noopener" 
->https://www.acmicpc.net/problem/2295</a></p>
+>https://www.acmicpc.net/problem/17435</a></p>
 
 
               
@@ -170,17 +173,12 @@ fun main(args: Array&lt;String&gt;) {
 
  <div class="pagination">
   
-    <a class="pagination__item" href="https://meinego.github.io/acm/11438/">
+    <a class="pagination__item" href="https://meinego.github.io/acm/2295/">
         <span class="pagination__label">Previous Post</span>
-        <span class="pagination__title">11438. LCA 2</span>
+        <span class="pagination__title">2295. 세 수의 합</span>
     </a>
   
 
-  
-    <a class="pagination__item" href="https://meinego.github.io/acm/17435/">
-      <span class="pagination__label">Next Post</span>
-      <span class="pagination__title" >17435. 합성함수와 쿼리</span>
-    </a>
   
 </div>
 
