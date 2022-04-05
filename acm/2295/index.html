@@ -2,12 +2,12 @@
 <html lang="ko">
 
 <head>
-  <title>11438. LCA 2 | meinego</title>
+  <title>2295. 세 수의 합 | meinego</title>
 
   <meta charset="UTF-8">
   <meta name="language" content="en">
   <meta name="description" content="백준">
-  <meta name="keywords" content="백준 , 11438">
+  <meta name="keywords" content="백준 , 2295">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,8 +44,8 @@
     { 
       "@context": "http://schema.org", 
       "@type": "WebSite", 
-      "url": "https:\/\/meinego.github.io\/acm\/11438\/",
-      "name": "11438. LCA 2",
+      "url": "https:\/\/meinego.github.io\/acm\/2295\/",
+      "name": "2295. 세 수의 합",
       "author": {
         "@type": "Person",
         "name": ""
@@ -103,87 +103,47 @@
       <div class="post__container">
         <div class="post">
           <header class="post__header">
-            <h1 id="post__title">11438. LCA 2</h1>
-            <time datetime="2022-03-24 18:55:25 &#43;0900 KST" class="post__date">Mar 24 2022</time> 
+            <h1 id="post__title">2295. 세 수의 합</h1>
+            <time datetime="2022-04-05 14:40:35 &#43;0900 KST" class="post__date">Apr 5 2022</time> 
           </header>
           <article class="post__content">
               
 <p><img src="/banner/acm_banner.jpg" alt="banner"></p>
 <h2 id="문제">문제<a class="anchor" href="#문제">#</a></h2>
-<p>루트가 1인 트리가 주어질 때 최소공통조상을 \(O(log N)\)에 찾는 문제</p>
+<p>집합 속 원소 셋의 합이 집합에 속할 때 가장 큰 합을 구하여라</p>
 <h2 id="풀이">풀이<a class="anchor" href="#풀이">#</a></h2>
-<p>노드마다 \(2^{i}\) 번째 부모를 미리 구해놓으면 된다.</p>
-<p>\(\text{1. DFS를 통해 노드들의 depth를 구한다.}\)<br>
-\(\text{2. parent[node_idx][max_log_n] 을 전부 구한다.}\)<br>
-\(\text{3. 찾으려고하는 노드 A, B의 depth를 같게 만든다.}\)<br>
-\(\text{4. 부모가 같아질 때까지 A, B를 거슬러 올라간다. }\)</p>
+<p>\( \text{단순 반복으로 풀면} \space  O(N^3 log N) 이다. \)<br>
+\( \text{A+B+C=S 일 때, A+B = S-C 이고 A,B,C,S 모두 집합의 원소이므로 } \)<br>
+\( \text{A+B 의 합을 우선 저장한 후,  }O(N^2) \text{ 에 S-C를 돌면서 구한 합들 중에 } \)<br>
+\( \text{있는지 확인하면 된다. } O(logN)\)</p>
 <h2 id="코드">코드<a class="anchor" href="#코드">#</a></h2>
-<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
-using namespace std;
-#define N 100'000
-#define logN 16
-vector&lt;int&gt; adj[N+1];
-int d[N+1], p[N+1][logN+1];
-int n,m;
+<pre><code class="language-kotlin">// kotlin 
 
-void dfs(int u) {
-    for (int v: adj[u]) {
-        if (d[v] != -1) continue;
-        d[v] = d[u]+1;
-        p[v][0] = u;
-        dfs(v);
-    }
-}
+fun main(args: Array&lt;String&gt;) {
+    val n = readInt()
+    val arr = IntArray(n) {readInt()}
+    arr.sort()
 
-void init_p() {
-    for (int j=1; j&lt;=logN; ++j)
-        for (int i=1; i&lt;=n; ++i)
-            p[i][j] = p[p[i][j-1]][j-1];
-}
-
-int lca(int a, int b) {
-    if (d[a] &lt; d[b]) swap(a,b);
-    for (int i=logN; i&gt;=0; --i)
-        if (d[a]-d[b] &gt;= (1&lt;&lt;i))
-            a=p[a][i];
-    
-    if (a==b) return a;
-
-    for (int i=logN; i&gt;=0; --i)
-        if (p[a][i] != p[b][i]) {
-            a = p[a][i];
-            b = p[b][i];
+    var m = TreeMap&lt;Int, Boolean&gt;()
+    for (i in 0..n-1)
+        for (j in i..n-1) {
+            val x = arr[i]+arr[j]
+            m[x] = true
         }
-    return p[a][0];
-}
 
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    memset(d, -1, sizeof d);
-    cin&gt;&gt;n;
-    for (int i=0; i&lt;n-1; ++i) {
-        int a,b; cin&gt;&gt;a&gt;&gt;b;
-        adj[a].push_back(b);
-        adj[b].push_back(a);
-    }
-    d[1]=0;
-    dfs(1);
-    init_p();
-    cin&gt;&gt;m;
-    for (int i=0; i&lt;m; ++i) {
-        int a,b; cin&gt;&gt;a&gt;&gt;b;
-        cout &lt;&lt; lca(a,b) &lt;&lt; &quot;\n&quot;;
-    }
-
-    return 0;
+    var ans = 0
+    for (i in 0..n-1)
+        for (j in i..n-1)
+            if (m.contains(arr[j]-arr[i]))
+                ans = maxOf(ans, arr[j])
+    println(ans)
 }
 </code></pre>
 <h2 id="링크">링크<a class="anchor" href="#링크">#</a></h2>
-<p><a href="https://www.acmicpc.net/problem/11438" 
+<p><a href="https://www.acmicpc.net/problem/2295" 
   
    target="_blank" rel="noreferrer noopener" 
->https://www.acmicpc.net/problem/11438</a></p>
+>https://www.acmicpc.net/problem/2295</a></p>
 
 
               
@@ -210,17 +170,12 @@ int main() {
 
  <div class="pagination">
   
-    <a class="pagination__item" href="https://meinego.github.io/acm/1620/">
+    <a class="pagination__item" href="https://meinego.github.io/acm/11438/">
         <span class="pagination__label">Previous Post</span>
-        <span class="pagination__title">1620. 나는야 포켓몬 마스터 이다솜</span>
+        <span class="pagination__title">11438. LCA 2</span>
     </a>
   
 
-  
-    <a class="pagination__item" href="https://meinego.github.io/acm/2295/">
-      <span class="pagination__label">Next Post</span>
-      <span class="pagination__title" >2295. 세 수의 합</span>
-    </a>
   
 </div>
 

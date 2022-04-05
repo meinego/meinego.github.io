@@ -7,7 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
     <copyright>© {year}</copyright>
-    <lastBuildDate>Thu, 24 Mar 2022 18:55:25 +0900</lastBuildDate><atom:link href="https://meinego.github.io/tags/%EB%B0%B1%EC%A4%80/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Apr 2022 14:40:35 +0900</lastBuildDate><atom:link href="https://meinego.github.io/tags/%EB%B0%B1%EC%A4%80/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2295. 세 수의 합</title>
+      <link>https://meinego.github.io/acm/2295/</link>
+      <pubDate>Tue, 05 Apr 2022 14:40:35 +0900</pubDate>
+      
+      <guid>https://meinego.github.io/acm/2295/</guid>
+      <description>문제 집합 속 원소 셋의 합이 집합에 속할 때 가장 큰 합을 구하여라
+풀이 \( \text{단순 반복으로 풀면} \space O(N^3 log N) 이다. \)
+\( \text{A+B+C=S 일 때, A+B = S-C 이고 A,B,C,S 모두 집합의 원소이므로 } \)
+\( \text{A+B 의 합을 우선 저장한 후, }O(N^2) \text{ 에 S-C를 돌면서 구한 합들 중에 } \)
+\( \text{있는지 확인하면 된다. } O(logN)\)
+코드 // kotlin fun main(args: Array&amp;lt;String&amp;gt;) { val n = readInt() val arr = IntArray(n) {readInt()} arr.</description>
+    </item>
+    
     <item>
       <title>11438. LCA 2</title>
       <link>https://meinego.github.io/acm/11438/</link>
