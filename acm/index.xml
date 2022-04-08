@@ -7,7 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ko</language>
     <copyright>© {year}</copyright>
-    <lastBuildDate>Tue, 05 Apr 2022 16:18:24 +0900</lastBuildDate><atom:link href="https://meinego.github.io/acm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 Apr 2022 16:48:58 +0900</lastBuildDate><atom:link href="https://meinego.github.io/acm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1238. 파티</title>
+      <link>https://meinego.github.io/acm/1238/</link>
+      <pubDate>Fri, 08 Apr 2022 16:48:58 +0900</pubDate>
+      
+      <guid>https://meinego.github.io/acm/1238/</guid>
+      <description>문제 다익스트라 문제로 N-&amp;gt;X 의 최단거리와 X-&amp;gt;N의 최단거리 합의 최댓값 구하기.
+풀이 X-&amp;gt;N 은 기본 다익스트라로 구하면 된다.
+N-&amp;gt;X를 구하기 위해서는 단방향인 edge 들을 시작지점과 끝지점을 거꾸로 생각해서
+다익스트라를 돌리면 된다.
+구현 포인트로
+ compareTo를 가지는 Item data class 선언 dist를 0으로 초기화해주는 것 우선순위 큐에서 넣고 꺼낼 때 dist[u] &amp;gt; cost 일 때만 처리하는 것이 있다.  코드 //kotlin data class Item(val v:Int, val w:Int): Comparable&amp;lt;Item&amp;gt; { override fun compareTo(other: Item): Int = w - other.</description>
+    </item>
+    
     <item>
       <title>17435. 합성함수와 쿼리</title>
       <link>https://meinego.github.io/acm/17435/</link>
