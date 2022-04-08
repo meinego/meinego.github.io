@@ -115,11 +115,11 @@
 <p>X-&gt;N 은 기본 다익스트라로 구하면 된다.<br>
 N-&gt;X를 구하기 위해서는 단방향인 edge 들을 시작지점과 끝지점을 거꾸로 생각해서<br>
 다익스트라를 돌리면 된다.</p>
-<p>구현 포인트로</p>
+<p>구현 포인트는 다음과 같다.</p>
 <ol>
-<li>compareTo를 가지는 Item data class 선언</li>
-<li>dist<input checked="" disabled="" type="checkbox"> 를 0으로 초기화해주는 것</li>
-<li>우선순위 큐에서 넣고 꺼낼 때 dist[u] &gt; cost 일 때만 처리하는 것이 있다.</li>
+<li>Comparable을 상속하는 Item data class 선언</li>
+<li>dist[x] 를 0으로 초기화하는 것</li>
+<li>우선순위 큐에서 넣고 꺼낼 때 dist[u] &gt; cost 일 때만 처리하는 것</li>
 </ol>
 <h2 id="코드">코드<a class="anchor" href="#코드">#</a></h2>
 <pre><code class="language-kotlin">//kotlin
